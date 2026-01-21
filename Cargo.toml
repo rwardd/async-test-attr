@@ -1,0 +1,20 @@
+[package]
+name = "async-test-attr"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/rwardd/async-test-attr"
+documentation = "https://docs.rs/async-test-attr"
+description = "A helper macro for attribute generation on async tests"
+readme = "README.md"
+authors = [
+    "Ryan Ward <ryan.ward17@outlook.com>"
+]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version =  "2.0", features = ["full"] }
+quote = "1.0"
+proc-macro2 = "1.0"
