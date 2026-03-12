@@ -10,7 +10,7 @@ pub fn async_test(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let input = parse_macro_input!(item as ItemFn);
     let output = quote! {
         #[cfg_attr(feature = "tokio", tokio::test)]
-        #[cfg_attr(all(any(feature = "futures"), not(feature = "tokio")), apply(test!))]
+        #[cfg_attr(all(any(feature = "smol"), not(feature = "tokio")), apply(test!))]
         #input
     };
     output.into()
@@ -24,7 +24,7 @@ pub fn async_executor(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let input = parse_macro_input!(item as ItemFn);
     let output = quote! {
         #[cfg_attr(feature = "tokio", tokio::main)]
-        #[cfg_attr(all(any(feature = "futures"), not(feature = "tokio")), macro_rules_attribute::apply(smol_macros::main!))]
+        #[cfg_attr(all(any(feature = "smol"), not(feature = "tokio")), macro_rules_attribute::apply(smol_macros::main!))]
         #input
     };
     output.into()
